@@ -28,8 +28,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       uses: actions/create-release@v1
       with:
-          tag_name: ${{ powershell "Get-Date -UFormat "%Y.%m%d" }}
-          release_name: Release ${{ powershell "Get-Date -UFormat "%Y.%m%d" }}
+          tag_name: ${{ "powershell "Get-Date -UFormat \"%Y.%m%d\"" }}
+          release_name: Release ${{ "powershell "Get-Date -UFormat \"%Y.%m%d\""}}
           body: "This is an automated release. Check the Pull Requests/Commits for details of what's changed"
           draft: false
           prerelease: false
