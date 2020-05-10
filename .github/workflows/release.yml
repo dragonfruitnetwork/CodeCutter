@@ -16,15 +16,12 @@ jobs:
           powershell Invoke-WebRequest "https://github.com/aspriddell/Time.NET/releases/download/1.0/AssemblyVersionPatch.exe" -O ".\AVP.exe" 
                   
       - name: Update Version Number
-        working-directory: .\
-        run: .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
+        run: .\AVP.exe "..\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
           
       - name: NuGet Restore
-        working-directory: .\
         run: nuget restore    
           
       - name: Build
-        working-directory: .\
         run: msbuild ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
           
       - name: Release
