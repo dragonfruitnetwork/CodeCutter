@@ -9,6 +9,9 @@ jobs:
   publish:
     runs-on: windows-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
       - name: Install Dependencies (Chocolatey)
         run: |
           choco install visualstudio2019-workload-manageddesktop
@@ -16,7 +19,7 @@ jobs:
           powershell Invoke-WebRequest "https://github.com/aspriddell/Time.NET/releases/download/1.0/AssemblyVersionPatch.exe" -O ".\AVP.exe" 
                   
       - name: Update Version Number
-        run: .\AVP.exe "..\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
+        run: .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
           
       - name: NuGet Restore
         run: nuget restore    
