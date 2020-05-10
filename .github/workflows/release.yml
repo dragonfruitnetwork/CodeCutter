@@ -1,0 +1,35 @@
+name: Build & Release
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+    - name: "Install Dependencies (Chocolatey)"
+      run: |
+        @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command " [System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+        choco install visualstudio2019-workload-manageddesktop
+        bitsadmin /transfer TimeNet /download /priority normal "https://github.com/aspriddell/Time.NET/releases/download/latest/AssemblyVersionPatch.exe" ".\AVP.exe"
+        
+    - name: "NuGet Restore"
+      run: nuget restore
+  
+    - name: "Update Version Number"
+      run: .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
+  
+    - name: "Build"
+      run: msbuild ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
+    
+    - name: "Release"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: actions/create-release@v1
+      with:
+          tag_name: ${{ powershell "Get-Date -UFormat "%Y.%m%d" }}
+          release_name: Release ${{ powershell "Get-Date -UFormat "%Y.%m%d" }}
+          body: "This is an automated release. Check the Pull Requests/Commits for details of what's changed"
+          draft: false
+          prerelease: false
