@@ -25,7 +25,7 @@ jobs:
         run: nuget restore    
           
       - name: Build
-        run: msbuild ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
+        run: \"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
           
       - name: Release
         uses: softprops/action-gh-release@v1
