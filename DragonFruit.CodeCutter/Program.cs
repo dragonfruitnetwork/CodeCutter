@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// CodeCutter Copyright 2020 DragonFruit Network <inbox@dragonfruit.network>
+// Licensed under the BSD 3-Clause "New" or "Revised" License. See the license.md file at the root of this repo for more info
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Xml.Serialization;
 using DragonFruit.CodeCutter.Helpers;
 using DragonFruit.CodeCutter.Inspector;
-using DragonFruit.CodeCutter.Inspector.Issues;
 using DragonFruit.CodeCutter.Objects;
-using Octokit;
-using ApiClient = DragonFruit.Common.Data.ApiClient;
+using DragonFruit.Common.Data;
 
 namespace DragonFruit.CodeCutter
 {
     internal class Program 
     {
-        private static readonly string BaseDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location ?? throw new EntryPointNotFoundException());
+        private static readonly string BaseDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location ?? throw new EntryPointNotFoundException());
         private static readonly string AnalysisOutputFile = $"InspectCode-Output-{Guid.NewGuid().ToString().Split('-')[0]}.xml";
 
         private static string AnalysisFile => Path.Combine(Path.GetTempPath(), AnalysisOutputFile);

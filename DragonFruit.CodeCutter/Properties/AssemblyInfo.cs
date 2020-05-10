@@ -1,16 +1,18 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿// CodeCutter Copyright 2020 DragonFruit Network <inbox@dragonfruit.network>
+// Licensed under the BSD 3-Clause "New" or "Revised" License. See the license.md file at the root of this repo for more info
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DragonFruit.CodeCutter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DragonFruit CodeCutter")]
+[assembly: AssemblyDescription("ReSharper Code Analysis")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DragonFruit.CodeCutter")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCompany("DragonFruit Network")]
+[assembly: AssemblyProduct("DragonFruit CodeCutter")]
+[assembly: AssemblyCopyright("Copyright © DragonFruit Network 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +34,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2020.510")]
+[assembly: AssemblyFileVersion("2020.510")]

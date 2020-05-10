@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// CodeCutter Copyright 2020 DragonFruit Network <inbox@dragonfruit.network>
+// Licensed under the BSD 3-Clause "New" or "Revised" License. See the license.md file at the root of this repo for more info
+
 using System.Xml.Serialization;
 using DragonFruit.CodeCutter.Inspector.Issues;
 
