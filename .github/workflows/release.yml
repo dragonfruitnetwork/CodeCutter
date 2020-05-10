@@ -17,6 +17,9 @@ jobs:
           choco install visualstudio2019-workload-manageddesktop
           choco install nuget.commandline
           powershell Invoke-WebRequest "https://github.com/aspriddell/Time.NET/releases/download/1.0/AssemblyVersionPatch.exe" -O ".\AVP.exe" 
+          
+      - name: "Setup MSBuild"
+        uses: microsoft/setup-msbuild@v1.0.0
                   
       - name: Update Version Number
         run: .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
@@ -25,12 +28,12 @@ jobs:
         run: nuget restore    
           
       - name: Build
-        run: \"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
+        run: MSBuild ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: "*.exe"
+          files: .\DragonFruit.CodeCutter\bin\Release\*.exe
           tag_name: '${{ github.job }}'
           name: 'v${{ github.job }}'
           draft: true
