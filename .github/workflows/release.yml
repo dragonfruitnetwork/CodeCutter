@@ -17,7 +17,7 @@ jobs:
                   
       - name: Update Version Number
         run: |
-          .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs
+          .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
           FOR /F "tokens=* USEBACKQ" %g IN (`powershell "Get-Date -UFormat \"%Y.%m%d\"`) do (SET "VERSION_NUMBER=%g")
           
       - name: NuGet Restore
