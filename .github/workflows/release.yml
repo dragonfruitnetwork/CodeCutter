@@ -9,10 +9,12 @@ jobs:
 
     steps:
     - name: "Install Dependencies (Chocolatey)"
-      run: |
-        @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command " [System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-        choco install visualstudio2019-workload-manageddesktop
-        bitsadmin /transfer TimeNet /download /priority normal "https://github.com/aspriddell/Time.NET/releases/download/latest/AssemblyVersionPatch.exe" ".\AVP.exe"
+      uses: crazy-max/ghaction-chocolatey@v1
+      with:
+        args: install visualstudio2019-workload-manageddesktop
+
+    - name: "Install Time.NET"
+      run: bitsadmin /transfer TimeNet /download /priority normal "https://github.com/aspriddell/Time.NET/releases/download/latest/AssemblyVersionPatch.exe" ".\AVP.exe"     
         
     - name: "NuGet Restore"
       run: nuget restore
