@@ -1,39 +1,46 @@
 name: Build & Release
-on:
-  push:
-    branches: [ master ]
 
+'on':
+  push:
+    branches:
+      - master
+        - 
 jobs:
   publish:
     runs-on: windows-latest
-
     steps:
-    - name: "Install Dependencies (Chocolatey)"
-      uses: crazy-max/ghaction-chocolatey@v1
-      with:
-        args: install visualstudio2019-workload-manageddesktop
+      - name: Install Dependencies (Chocolatey)
+        run: >
+          install visualstudio2019-workload-manageddesktop
 
-    - name: "Install Time.NET"
-      run: bitsadmin /transfer TimeNet /download /priority normal "https://github.com/aspriddell/Time.NET/releases/download/latest/AssemblyVersionPatch.exe" ".\AVP.exe"     
+          bitsadmin /transfer TimeNet /download /priority normal
+          "https://github.com/aspriddell/Time.NET/releases/download/latest/AssemblyVersionPatch.exe"
+          ".\AVP.exe"
+          
+      - name: NuGet Restore
+        run: nuget restore
         
-    - name: "NuGet Restore"
-      run: nuget restore
-  
-    - name: "Update Version Number"
-      run: |
-        .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
-        FOR /F "tokens=* USEBACKQ" %g IN (`powershell "Get-Date -UFormat \"%Y.%m%d\"`) do (SET "VERSION_NUMBER=%g")
-  
-    - name: "Build"
-      run: msbuild ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
-    
-    - name: "Release"
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      uses: actions/create-release@v1
-      with:
-          tag_name: ${{ env.VERSION_NUMBER }}
-          release_name: ${{ env.VERSION_NUMBER }}
-          body: "This is an automated release. Check the Pull Requests/Commits for details of what's changed"
+      - name: Update Version Number
+        run: >
+          .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
+
+          FOR /F "tokens=* USEBACKQ" %g IN (`powershell "Get-Date -UFormat
+          \"%Y.%m%d\"`) do (SET "VERSION_NUMBER=%g")
+          
+      - name: Build
+        run: >-
+          msbuild ".\DragonFruit.CodeCutter.sln" /t:Build
+          /p:Configuration=Release
+          
+      - name: Release
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+        uses: actions/create-release@v1
+        with:
+          tag_name: '${{ env.VERSION_NUMBER }}'
+          release_name: '${{ env.VERSION_NUMBER }}'
+          body: >-
+            This is an automated release. Check the Pull Requests/Commits for
+            details of what's changed
           draft: false
           prerelease: false
