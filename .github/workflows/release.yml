@@ -34,9 +34,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: .\DragonFruit.CodeCutter\bin\Release\*.exe
-          tag_name: '${{ github.job }}'
-          name: 'v${{ github.job }}'
-          draft: true
+          tag_name: '${{ github.run_id }}'
+          name: 'v${{ github.run_id }}'
+          draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
