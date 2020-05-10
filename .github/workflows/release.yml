@@ -10,27 +10,20 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Install Dependencies (Chocolatey)
-        run: >
-          install visualstudio2019-workload-manageddesktop
-
-          bitsadmin /transfer TimeNet /download /priority normal
-          "https://github.com/aspriddell/Time.NET/releases/download/latest/AssemblyVersionPatch.exe"
-          ".\AVP.exe"
+        run: |
+          choco install visualstudio2019-workload-manageddesktop
+          powershell Invoke-WebRequest "https://github.com/aspriddell/Time.NET/releases/download/1.0/AssemblyVersionPatch.exe" -O ".\AVP.exe"
           
       - name: NuGet Restore
         run: nuget restore
         
       - name: Update Version Number
-        run: >
-          .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs"
-
-          FOR /F "tokens=* USEBACKQ" %g IN (`powershell "Get-Date -UFormat
-          \"%Y.%m%d\"`) do (SET "VERSION_NUMBER=%g")
+        run: |
+          .\AVP.exe ".\DragonFruit.CodeCutter/Properties/AssemblyInfo.cs
+          FOR /F "tokens=* USEBACKQ" %g IN (`powershell "Get-Date -UFormat \"%Y.%m%d\"`) do (SET "VERSION_NUMBER=%g")
           
       - name: Build
-        run: >-
-          msbuild ".\DragonFruit.CodeCutter.sln" /t:Build
-          /p:Configuration=Release
+        run: msbuild ".\DragonFruit.CodeCutter.sln" /t:Build /p:Configuration=Release
           
       - name: Release
         env:
