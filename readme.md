@@ -1,6 +1,6 @@
 # DragonFruit CodeCutter
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8a1e425c2ae9466db78625de2446d0f9)](https://app.codacy.com/gh/dragonfruitnetwork/CodeCutter?utm_source=github.com&utm_medium=referral&utm_content=dragonfruitnetwork/CodeCutter&utm_campaign=Badge_Grade_Dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8a1e425c2ae9466db78625de2446d0f9)](https://app.codacy.com/gh/dragonfruitnetwork/CodeCutter?utm_source=github.com&utm_medium=referral&utm_content=dragonfruitnetwork/CodeCutter&utm_campaign=Badge_Grade_Dashboard) ![Build & Release](https://github.com/dragonfruitnetwork/CodeCutter/workflows/Build%20&%20Release/badge.svg?branch=release)
 
 ## Overview
 CodeCutter is a simple Windows tool that allows developers to get code quality feedback based on their pre-existing ReSharper Config. It uses the free Command Line tools, which are available to download from the JetBrains site. This tool is designed to be quick and easy to use, with the ability to hide certain levels of "issues" found. It can also be used to return an exit code other than `0`, which on CI servers, can also lead to the build failing (which will alert the PR opener that there are code quality issues).
@@ -30,9 +30,9 @@ See the below example. Note JSON can't contain comments - these are just for exp
   "errorLevel": 4
 }
 ```
-Issue Severity is out of 5 levels: 
-- `None` = 0
-- `Hint` = 1
-- `Suggestion` = 2
-- `Warning` = 3
-- `Error` = 4
+Issue Severity is ranked out of 5 levels: 
+- `Hint` = 0
+- `Suggestion` = 1
+- `Warning` = 2
+- `Error` = 3
+- `None` = 4
