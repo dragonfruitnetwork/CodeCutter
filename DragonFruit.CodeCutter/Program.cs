@@ -145,7 +145,7 @@ namespace DragonFruit.CodeCutter
                     {
                         ConsoleOutput.Print($"{file.Key} · {file.Count()} Issues", ConsoleColor.Magenta);
 
-                        foreach (var issue in issueCategory)
+                        foreach (var issue in file)
                         {
                             ConsoleOutput.Print($"-> {issue.Message} (L#{issue.Line})", ConsoleColor.DarkGray);
                         }
