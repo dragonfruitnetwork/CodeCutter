@@ -1,6 +1,7 @@
 ﻿// CodeCutter Copyright 2020 DragonFruit Network <inbox@dragonfruit.network>
-// Licensed under the BSD 3-Clause "New" or "Revised" License. See the license.md file at the root of this repo for more info
+// Licensed under the Mozilla Public License Version 2.0. See the license.md file at the root of this repo for more info
 
+using System;
 using DragonFruit.CodeCutter.Inspector;
 using DragonFruit.CodeCutter.Inspector.Issues;
 
@@ -27,5 +28,29 @@ namespace DragonFruit.CodeCutter.Objects
         public uint Line { get; set; }
 
         public string Message { get; set; }
+
+        public ConsoleColor SeverityColor
+        {
+            get
+            {
+                switch (Severity)
+                {
+                    case Severity.Error:
+                        return ConsoleColor.Red;
+
+                    case Severity.Warning:
+                        return ConsoleColor.Yellow;
+
+                    case Severity.Suggestion:
+                        return ConsoleColor.DarkCyan;
+
+                    case Severity.Hint:
+                        return ConsoleColor.DarkGray;
+
+                    default:
+                        return ConsoleColor.Gray;
+                }
+            }
+        }
     }
 }
