@@ -30,9 +30,9 @@ See the below example. Note JSON can't contain comments - these are just for exp
   "errorLevel": 4
 }
 ```
-Issue Severity is out of 5 levels: 
-- `None` = 0
-- `Hint` = 1
-- `Suggestion` = 2
-- `Warning` = 3
-- `Error` = 4
+Issue Severity is ranked out of 5 levels: 
+- `Hint` = 0
+- `Suggestion` = 1
+- `Warning` = 2
+- `Error` = 3
+- `None` = 4
