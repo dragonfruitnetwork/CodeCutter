@@ -2,14 +2,10 @@ name: Build (Test)
 
 on:
   push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
+    branches-ignore: release
 
 jobs:
-  publish:
+  test:
     runs-on: windows-latest
     steps:
       - name: Checkout
