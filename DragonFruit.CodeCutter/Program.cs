@@ -16,7 +16,7 @@ using DragonFruit.Common.Data.Services;
 
 namespace DragonFruit.CodeCutter
 {
-    internal class Program
+    public class Program
     {
         private const string ConfigFileName = "codecutter.json";
 
@@ -129,7 +129,9 @@ namespace DragonFruit.CodeCutter
                 ConsoleOutput.Print($"\nProject: {project.Name} · {issues.Count()} Issues\n", ConsoleColor.Cyan);
 
                 if (!issues.Any())
+                {
                     continue;
+                }
 
                 issueTotal += issues.Count();
                 anyIssues |= issues.Any(x => x.Severity >= config.ErrorLevel);
