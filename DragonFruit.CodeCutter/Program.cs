@@ -16,7 +16,7 @@ using DragonFruit.Common.Data.Services;
 
 namespace DragonFruit.CodeCutter
 {
-    public class Program
+    public static class Program
     {
         private const string ConfigFileName = "codecutter.json";
 
