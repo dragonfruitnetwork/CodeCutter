@@ -17,7 +17,7 @@ jobs:
           choco install nuget.commandline
           
       - name: "Setup MSBuild"
-        uses: microsoft/setup-msbuild@v1.0.0
+        uses: microsoft/setup-msbuild@v1.0.2
                             
       - name: NuGet Restore
         run: nuget restore    
