@@ -8,7 +8,7 @@ namespace DragonFruit.CodeCutter.Helpers
 {
     internal class ReSharperToolsDownloadRequest : ApiFileRequest
     {
-        public override string Path => "https://download-cf.jetbrains.com/resharper/ReSharperUltimate.2020.1.2/JetBrains.ReSharper.CommandLineTools.2020.1.2.zip";
+        public override string Path => "https://download-cf.jetbrains.com/resharper/dotUltimate.2020.2.4/JetBrains.ReSharper.CommandLineTools.2020.2.4.zip";
 
         public override string Destination => System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetFileName(new Uri(Path).LocalPath));
     }
